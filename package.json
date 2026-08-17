@@ -1,0 +1,17 @@
+{
+  "scripts": {
+    "test": "cucumber-js",
+    "report": "npx cucumber-js --format @cucumber/html-formatter:reports/cucumber-report.html",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^7.3.2",
+    "@cucumber/html-formatter": "^15.0.2",
+    "allure-cucumberjs": "^2.15.0",
+    "playwright": "^1.62.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2"
+  }
+}

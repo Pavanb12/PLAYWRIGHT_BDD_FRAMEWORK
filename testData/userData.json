@@ -1,0 +1,17 @@
+{
+    "name":"John Cena",
+    "email":"testuser5@mailinator.com",
+    "password":"Password123",
+
+    "firstName":"John",
+    "lastName":"Smith",
+    "company":"ABC Pvt Ltd",
+    "address":"Bangalore",
+    "address2":"Electronic City",
+
+    "country":"India",
+    "state":"Karnataka",
+    "city":"Bangalore",
+    "zipcode":"560001",
+    "mobile":"9876543210"
+}
