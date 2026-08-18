@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
 
         stage('Checkout') {
@@ -11,6 +12,30 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 bat 'npm ci'
+            }
+        }
+
+        stage('Create .env') {
+            steps {
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'playwright-login',
+                        usernameVariable: 'APP_USERNAME',
+                        passwordVariable: 'APP_PASSWORD'
+                    )
+                ]) {
+                    bat '''
+                        echo BASE_URL=https://your-qa-url.com > .env
+                        echo USERNAME=%APP_USERNAME% >> .env
+                        echo PASSWORD=%APP_PASSWORD% >> .env
+                    '''
+                }
+            }
+        }
+
+        stage('Verify .env') {
+            steps {
+                bat 'if exist .env (echo .env created successfully) else (echo ERROR: .env missing)'
             }
         }
 
@@ -31,6 +56,10 @@ pipeline {
         always {
             archiveArtifacts artifacts: 'playwright-report/**',
                              allowEmptyArchive: true
+        }
+
+        cleanup {
+            bat 'if exist .env del /f /q .env'
         }
     }
 }
