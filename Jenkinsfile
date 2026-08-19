@@ -19,7 +19,7 @@ pipeline {
             steps {
                 withCredentials([
                     file(
-                        credentialsId: 'playwright-env',
+                        credentialsId: 'orangehrm-env',
                         variable: 'ENV_FILE'
                     )
                 ]) {
